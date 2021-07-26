@@ -24,4 +24,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(["prefix" => "mypage", "middleware" => "auth", "namespace" => "Mypage"], function(){
     Route::get("edit-profile", "ProfileController@showProfileEditForm")->name("mypage.edit-profile");
+    Route::post("edit-profile", "ProfileController@editProfile")->name("mypage.edit-profile");
 });

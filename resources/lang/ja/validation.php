@@ -117,6 +117,7 @@ return [
     */
 
     'attributes' => [
+        "name" => "ニックネーム",
         "password" => "パスワード",
     ],
 
