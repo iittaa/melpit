@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\PrimaryCategory;
+use App\Models\SecondaryCategory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,5 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UserSeeder::class);
         $this->call(ItemConditionSeeder::class);
+        $this->call(PrimaryCategorySeeder::class);
+        $this->call(SecondaryCategorySeeder::class);
     }
 }
