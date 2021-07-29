@@ -28,8 +28,8 @@ Route::group(["prefix" => "mypage", "middleware" => "auth", "namespace" => "Mypa
 });
 
 Route::group(["middleware" => "auth"], function(){
-    Route::get("/sell", "SellController@showSellForm")->name("sell");
-    Route::post("/sell", "SellController@sellItem")->name("sell");
+    Route::get("sell", "SellController@showSellForm")->name("sell");
+    Route::post("sell", "SellController@sellItem")->name("sell");
 });
 
 

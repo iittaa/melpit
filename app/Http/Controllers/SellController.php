@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use APP\Http\Requests\SellRequest;
+use App\Models\Item;
 use App\Models\ItemCondition;
 use App\Models\PrimaryCategory;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class SellController extends Controller
 {
@@ -19,5 +23,23 @@ class SellController extends Controller
         ])->orderBy("sort_no")->get();
 
         return view("sell", compact("conditions", "categories"));
+    }
+
+    public function sellItem(Request $request)
+    {
+        $user = Auth::user();
+
+        $item = new Item();
+        $item->seller_id = $user->id;
+        $item->name = $request->name;
+        $item->description = $request->description;
+        $item->secondary_category_id = $request->category;
+        $item->item_condition_id = $request->condition;
+        $item->price = $request->price;
+        $item->state = Item::STATE_SELLING;
+
+        $item->save();
+        return redirect()->back()->with("status", "商品を出品しました");
+
     }
 }
