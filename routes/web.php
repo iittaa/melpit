@@ -17,15 +17,13 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // })->name("top");
 
-Route::get("/", "ItemsController@showItems")->name("top");
-
-
+Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get("/", "ItemsController@showItems")->name("top");
 
 // 仮のルート
-Route::get('items/{item}', function () {return "商品詳細";})->name('item');
+Route::get('items/{item}',"ItemsController@showItemDetail")->name('item');
 
 Route::group(["prefix" => "mypage", "middleware" => "auth", "namespace" => "Mypage"], function(){
     Route::get("edit-profile", "ProfileController@showProfileEditForm")->name("mypage.edit-profile");
@@ -37,6 +35,7 @@ Route::group(["prefix" => "mypage", "middleware" => "auth", "namespace" => "Mypa
 Route::group(["middleware" => "auth"], function(){
     Route::get("sell", "SellController@showSellForm")->name("sell");
     Route::post("sell", "SellController@sellItem")->name("sell");
+    Route::get('items/{item}/buy', function () { return "商品購入画面";})->name('item.buy');
 });
 
 
