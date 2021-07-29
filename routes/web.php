@@ -13,14 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name("top");
+// Route::get('/', function () {
+//     return view('welcome');
+// })->name("top");
+
+Route::get("/", "ItemsController@showItems")->name("top");
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+// 仮のルート
+Route::get('items/{item}', function () {return "商品詳細";})->name('item');
 
 Route::group(["prefix" => "mypage", "middleware" => "auth", "namespace" => "Mypage"], function(){
     Route::get("edit-profile", "ProfileController@showProfileEditForm")->name("mypage.edit-profile");
@@ -33,9 +38,6 @@ Route::group(["middleware" => "auth"], function(){
     Route::get("sell", "SellController@showSellForm")->name("sell");
     Route::post("sell", "SellController@sellItem")->name("sell");
 });
-
-// 仮のルート
-Route::get('items/{item}', function () {return "商品詳細";})->name('item');
 
 
 
