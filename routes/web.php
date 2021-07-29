@@ -25,11 +25,18 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(["prefix" => "mypage", "middleware" => "auth", "namespace" => "Mypage"], function(){
     Route::get("edit-profile", "ProfileController@showProfileEditForm")->name("mypage.edit-profile");
     Route::post("edit-profile", "ProfileController@editProfile")->name("mypage.edit-profile");
+    Route::get("sold-items", "SoldItemsController@showSoldItems")->name("mypage.sold-items");
+
 });
 
 Route::group(["middleware" => "auth"], function(){
     Route::get("sell", "SellController@showSellForm")->name("sell");
     Route::post("sell", "SellController@sellItem")->name("sell");
 });
+
+// 仮のルート
+Route::get('items/{item}', function () {return "商品詳細";})->name('item');
+
+
 
 

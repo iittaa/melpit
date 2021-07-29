@@ -69,7 +69,7 @@ class SellController extends Controller
       }
 
     /**
-      * 一時的なファイルを生成してパスを返します。
+      * 一時的なファイPルを生成してパスを返します。
       *
       * @return string ファイルパス
       */
